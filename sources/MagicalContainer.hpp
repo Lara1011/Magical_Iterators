@@ -6,6 +6,8 @@
 #define CPP_HW5_MAGICALCONTAINER_HPP
 
 #include <vector>
+#include <algorithm>
+#include <stdexcept>
 
 using namespace std;
 namespace ariel {
