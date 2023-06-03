@@ -5,7 +5,7 @@
 #include "MagicalContainer.hpp"
 
 namespace ariel {
-    MagicalContainer::MagicalContainer() : elements(0) {}
+    MagicalContainer::MagicalContainer() : elements(), prime() {}
 
     size_t MagicalContainer::size() {
         return this->elements.size();
