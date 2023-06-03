@@ -2,7 +2,7 @@
 // Created by Lara Abu Hamad on 5/24/23.
 //
 
-#include <iostream>
+#include <algorithm>
 #include "MagicalContainer.hpp"
 
 namespace ariel {
