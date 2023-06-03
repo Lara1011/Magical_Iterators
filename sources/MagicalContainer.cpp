@@ -12,6 +12,9 @@ namespace ariel {
     }
 
     void MagicalContainer::addElement(int elem) {
+        auto it = find(elements.begin(), elements.end(), elem);
+        if(it != elements.end())
+            return;
         if (isPrime(elem)) {
             sortElements(elem, prime);
         }
