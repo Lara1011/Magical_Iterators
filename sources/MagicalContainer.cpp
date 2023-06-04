@@ -142,6 +142,34 @@ namespace ariel {
         return *magc;
     }
 
+    bool MagicalContainer::AscendingIterator::operator==(const ariel::MagicalContainer::Iterator &other) const {
+        const AscendingIterator *other_ascending = dynamic_cast<const AscendingIterator*>(&other);
+        if (!other_ascending)
+            throw runtime_error("Iterators have different types");
+        return *this == *other_ascending;
+    }
+
+    bool MagicalContainer::AscendingIterator::operator!=(const ariel::MagicalContainer::Iterator &other) const {
+        const AscendingIterator *other_ascending = dynamic_cast<const AscendingIterator*>(&other);
+        if (!other_ascending)
+            throw runtime_error("Iterators have different types");
+        return *this != *other_ascending;
+    }
+
+    bool MagicalContainer::AscendingIterator::operator>(const ariel::MagicalContainer::Iterator &other) const {
+        const AscendingIterator *other_ascending = dynamic_cast<const AscendingIterator*>(&other);
+        if (!other_ascending)
+            throw runtime_error("Iterators have different types");
+        return *this > *other_ascending;
+    }
+
+    bool MagicalContainer::AscendingIterator::operator<(const ariel::MagicalContainer::Iterator &other) const {
+        const AscendingIterator *other_ascending = dynamic_cast<const AscendingIterator*>(&other);
+        if (!other_ascending)
+            throw runtime_error("Iterators have different types");
+        return *this < *other_ascending;
+    }
+
     MagicalContainer::PrimeIterator::PrimeIterator() : magc(new MagicalContainer()), currIndex(0) {}
 
     MagicalContainer::PrimeIterator::PrimeIterator(MagicalContainer &magc) : magc(&magc), currIndex(0){}
@@ -217,6 +245,34 @@ namespace ariel {
 
     MagicalContainer MagicalContainer::PrimeIterator::getContainer() {
         return *magc;
+    }
+
+    bool MagicalContainer::PrimeIterator::operator==(const ariel::MagicalContainer::Iterator &other) const {
+        const PrimeIterator *other_ascending = dynamic_cast<const PrimeIterator*>(&other);
+        if (!other_ascending)
+            throw runtime_error("Iterators have different types");
+        return *this == *other_ascending;
+    }
+
+    bool MagicalContainer::PrimeIterator::operator!=(const ariel::MagicalContainer::Iterator &other) const {
+        const PrimeIterator *other_ascending = dynamic_cast<const PrimeIterator*>(&other);
+        if (!other_ascending)
+            throw runtime_error("Iterators have different types");
+        return *this != *other_ascending;
+    }
+
+    bool MagicalContainer::PrimeIterator::operator>(const ariel::MagicalContainer::Iterator &other) const {
+        const PrimeIterator *other_ascending = dynamic_cast<const PrimeIterator*>(&other);
+        if (!other_ascending)
+            throw runtime_error("Iterators have different types");
+        return *this > *other_ascending;
+    }
+
+    bool MagicalContainer::PrimeIterator::operator<(const ariel::MagicalContainer::Iterator &other) const {
+        const PrimeIterator *other_ascending = dynamic_cast<const PrimeIterator*>(&other);
+        if (!other_ascending)
+            throw runtime_error("Iterators have different types");
+        return *this < *other_ascending;
     }
 
     MagicalContainer::SideCrossIterator::SideCrossIterator() : magc(new MagicalContainer()), frontIndex(0), backIndex(0) {}
@@ -323,5 +379,33 @@ namespace ariel {
 
     MagicalContainer MagicalContainer::SideCrossIterator::getContainer() {
         return *magc;
+    }
+
+    bool MagicalContainer::SideCrossIterator::operator==(const ariel::MagicalContainer::Iterator &other) const {
+        const SideCrossIterator *other_ascending = dynamic_cast<const SideCrossIterator*>(&other);
+        if (!other_ascending)
+            throw runtime_error("Iterators have different types");
+        return *this == *other_ascending;
+    }
+
+    bool MagicalContainer::SideCrossIterator::operator!=(const ariel::MagicalContainer::Iterator &other) const {
+        const SideCrossIterator *other_ascending = dynamic_cast<const SideCrossIterator*>(&other);
+        if (!other_ascending)
+            throw runtime_error("Iterators have different types");
+        return *this != *other_ascending;
+    }
+
+    bool MagicalContainer::SideCrossIterator::operator>(const ariel::MagicalContainer::Iterator &other) const {
+        const SideCrossIterator *other_ascending = dynamic_cast<const SideCrossIterator*>(&other);
+        if (!other_ascending)
+            throw runtime_error("Iterators have different types");
+        return *this > *other_ascending;
+    }
+
+    bool MagicalContainer::SideCrossIterator::operator<(const ariel::MagicalContainer::Iterator &other) const {
+        const SideCrossIterator *other_ascending = dynamic_cast<const SideCrossIterator*>(&other);
+        if (!other_ascending)
+            throw runtime_error("Iterators have different types");
+        return *this < *other_ascending;
     }
 }
