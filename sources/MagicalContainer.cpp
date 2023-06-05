@@ -213,7 +213,7 @@ namespace ariel {
         return !(*this == other);
     }
 
-    int MagicalContainer::PrimeIterator::operator*() {
+    int MagicalContainer::PrimeIterator::operator*() const{
         if (magc && currIndex < magc->prime.size()) {
             return magc->prime[static_cast<size_t>(currIndex)];
         }

@@ -213,7 +213,7 @@ namespace ariel {
 
             bool operator<(const PrimeIterator &other) const;
 
-            int operator*();
+            int operator*() const;
 
             PrimeIterator &operator++();
 
