@@ -67,7 +67,7 @@ namespace ariel {
 
     MagicalContainer::AscendingIterator::AscendingIterator(MagicalContainer &magc) : magc(&magc), index(0) {}
 
-    MagicalContainer::AscendingIterator::AscendingIterator(const AscendingIterator &other) : magc(other.magc) {}
+    MagicalContainer::AscendingIterator::AscendingIterator(const AscendingIterator &other) : magc(other.magc), index(other.index) {}
 
     MagicalContainer::AscendingIterator MagicalContainer::AscendingIterator::begin() {
         AscendingIterator beginIterator(*magc);
@@ -134,7 +134,7 @@ namespace ariel {
         return *this;
     }
 
-    int MagicalContainer::AscendingIterator::getIndex() {
+    int MagicalContainer::AscendingIterator::getIndex() const {
         return index;
     }
 
@@ -143,28 +143,28 @@ namespace ariel {
     }
 
     bool MagicalContainer::AscendingIterator::operator==(const ariel::MagicalContainer::Iterator &other) const {
-        const AscendingIterator *other_ascending = dynamic_cast<const AscendingIterator*>(&other);
+        const auto *other_ascending = dynamic_cast<const AscendingIterator*>(&other);
         if (!other_ascending)
             throw runtime_error("Iterators have different types");
         return *this == *other_ascending;
     }
 
     bool MagicalContainer::AscendingIterator::operator!=(const ariel::MagicalContainer::Iterator &other) const {
-        const AscendingIterator *other_ascending = dynamic_cast<const AscendingIterator*>(&other);
+        const auto *other_ascending = dynamic_cast<const AscendingIterator*>(&other);
         if (!other_ascending)
             throw runtime_error("Iterators have different types");
         return *this != *other_ascending;
     }
 
     bool MagicalContainer::AscendingIterator::operator>(const ariel::MagicalContainer::Iterator &other) const {
-        const AscendingIterator *other_ascending = dynamic_cast<const AscendingIterator*>(&other);
+        const auto *other_ascending = dynamic_cast<const AscendingIterator*>(&other);
         if (!other_ascending)
             throw runtime_error("Iterators have different types");
         return *this > *other_ascending;
     }
 
     bool MagicalContainer::AscendingIterator::operator<(const ariel::MagicalContainer::Iterator &other) const {
-        const AscendingIterator *other_ascending = dynamic_cast<const AscendingIterator*>(&other);
+        const auto *other_ascending = dynamic_cast<const AscendingIterator*>(&other);
         if (!other_ascending)
             throw runtime_error("Iterators have different types");
         return *this < *other_ascending;
@@ -174,7 +174,7 @@ namespace ariel {
 
     MagicalContainer::PrimeIterator::PrimeIterator(MagicalContainer &magc) : magc(&magc), currIndex(0){}
 
-    MagicalContainer::PrimeIterator::PrimeIterator(const PrimeIterator &other) : magc(other.magc) {}
+    MagicalContainer::PrimeIterator::PrimeIterator(const PrimeIterator &other) : magc(other.magc), currIndex(other.currIndex) {}
 
     MagicalContainer::PrimeIterator MagicalContainer::PrimeIterator::begin() {
         PrimeIterator beginIterator(*magc);
@@ -239,7 +239,7 @@ namespace ariel {
         return *this;
     }
 
-    int MagicalContainer::PrimeIterator::getIndex() {
+    int MagicalContainer::PrimeIterator::getIndex() const {
         return currIndex;
     }
 
@@ -248,28 +248,28 @@ namespace ariel {
     }
 
     bool MagicalContainer::PrimeIterator::operator==(const ariel::MagicalContainer::Iterator &other) const {
-        const PrimeIterator *other_ascending = dynamic_cast<const PrimeIterator*>(&other);
+        const auto *other_ascending = dynamic_cast<const PrimeIterator*>(&other);
         if (!other_ascending)
             throw runtime_error("Iterators have different types");
         return *this == *other_ascending;
     }
 
     bool MagicalContainer::PrimeIterator::operator!=(const ariel::MagicalContainer::Iterator &other) const {
-        const PrimeIterator *other_ascending = dynamic_cast<const PrimeIterator*>(&other);
+        const auto *other_ascending = dynamic_cast<const PrimeIterator*>(&other);
         if (!other_ascending)
             throw runtime_error("Iterators have different types");
         return *this != *other_ascending;
     }
 
     bool MagicalContainer::PrimeIterator::operator>(const ariel::MagicalContainer::Iterator &other) const {
-        const PrimeIterator *other_ascending = dynamic_cast<const PrimeIterator*>(&other);
+        const auto *other_ascending = dynamic_cast<const PrimeIterator*>(&other);
         if (!other_ascending)
             throw runtime_error("Iterators have different types");
         return *this > *other_ascending;
     }
 
     bool MagicalContainer::PrimeIterator::operator<(const ariel::MagicalContainer::Iterator &other) const {
-        const PrimeIterator *other_ascending = dynamic_cast<const PrimeIterator*>(&other);
+        const auto *other_ascending = dynamic_cast<const PrimeIterator*>(&other);
         if (!other_ascending)
             throw runtime_error("Iterators have different types");
         return *this < *other_ascending;
@@ -277,14 +277,14 @@ namespace ariel {
 
     MagicalContainer::SideCrossIterator::SideCrossIterator() : magc(new MagicalContainer()), frontIndex(0), backIndex(0) {}
 
-    MagicalContainer::SideCrossIterator::SideCrossIterator(MagicalContainer &magc) : magc(&magc), frontIndex(0), backIndex(magc.size() - 1) {}
+    MagicalContainer::SideCrossIterator::SideCrossIterator(MagicalContainer &magc) : magc(&magc), frontIndex(0), backIndex(static_cast<int>(magc.size()) - 1) {}
 
-    MagicalContainer::SideCrossIterator::SideCrossIterator(const SideCrossIterator &other) : magc(other.magc) {}
+    MagicalContainer::SideCrossIterator::SideCrossIterator(const SideCrossIterator &other) : magc(other.magc), frontIndex(other.frontIndex), backIndex(other.backIndex) {}
 
     MagicalContainer::SideCrossIterator MagicalContainer::SideCrossIterator::begin() {
         SideCrossIterator beginIterator(*magc);
         beginIterator.frontIndex = 0;
-        beginIterator.backIndex = magc->size() - 1;
+        beginIterator.backIndex = static_cast<int>(magc->size()) - 1;
         return beginIterator;
     }
 
@@ -369,11 +369,11 @@ namespace ariel {
         return *this;
     }
 
-    int MagicalContainer::SideCrossIterator::getBindex() {
+    int MagicalContainer::SideCrossIterator::getBindex() const {
         return backIndex;
     }
 
-    int MagicalContainer::SideCrossIterator::getFindex() {
+    int MagicalContainer::SideCrossIterator::getFindex() const {
         return frontIndex;
     }
 
@@ -382,28 +382,28 @@ namespace ariel {
     }
 
     bool MagicalContainer::SideCrossIterator::operator==(const ariel::MagicalContainer::Iterator &other) const {
-        const SideCrossIterator *other_ascending = dynamic_cast<const SideCrossIterator*>(&other);
+        const auto *other_ascending = dynamic_cast<const SideCrossIterator*>(&other);
         if (!other_ascending)
             throw runtime_error("Iterators have different types");
         return *this == *other_ascending;
     }
 
     bool MagicalContainer::SideCrossIterator::operator!=(const ariel::MagicalContainer::Iterator &other) const {
-        const SideCrossIterator *other_ascending = dynamic_cast<const SideCrossIterator*>(&other);
+        const auto *other_ascending = dynamic_cast<const SideCrossIterator*>(&other);
         if (!other_ascending)
             throw runtime_error("Iterators have different types");
         return *this != *other_ascending;
     }
 
     bool MagicalContainer::SideCrossIterator::operator>(const ariel::MagicalContainer::Iterator &other) const {
-        const SideCrossIterator *other_ascending = dynamic_cast<const SideCrossIterator*>(&other);
+        const auto *other_ascending = dynamic_cast<const SideCrossIterator*>(&other);
         if (!other_ascending)
             throw runtime_error("Iterators have different types");
         return *this > *other_ascending;
     }
 
     bool MagicalContainer::SideCrossIterator::operator<(const ariel::MagicalContainer::Iterator &other) const {
-        const SideCrossIterator *other_ascending = dynamic_cast<const SideCrossIterator*>(&other);
+        const auto *other_ascending = dynamic_cast<const SideCrossIterator*>(&other);
         if (!other_ascending)
             throw runtime_error("Iterators have different types");
         return *this < *other_ascending;

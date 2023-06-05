@@ -15,7 +15,7 @@ namespace ariel {
     private:
         vector<int> elements;
         vector<int> prime;
-        void sortElements(int elem, vector<int> &elmnts);
+        static void sortElements(int elem, vector<int> &elmnts);
         static bool isPrime(int number);
 
     public:
@@ -98,7 +98,7 @@ namespace ariel {
 
             AscendingIterator end();
 
-            int getIndex();
+            int getIndex() const;
 
             MagicalContainer getContainer();
 
@@ -160,9 +160,9 @@ namespace ariel {
 
             SideCrossIterator end();
 
-            int getFindex();
+            int getFindex() const;
 
-            int getBindex();
+            int getBindex() const;
 
             MagicalContainer getContainer();
 
@@ -221,7 +221,7 @@ namespace ariel {
 
             PrimeIterator end();
 
-            int getIndex();
+            int getIndex() const;
 
             MagicalContainer getContainer();
 
