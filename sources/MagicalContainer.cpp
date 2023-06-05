@@ -336,7 +336,7 @@ namespace ariel {
                 return magc->getElements()[static_cast<size_t >(backIndex)];
             }
         }
-        return 0;
+        throw runtime_error("Iterator out of range");
     }
 
     MagicalContainer::SideCrossIterator &MagicalContainer::SideCrossIterator::operator++() {

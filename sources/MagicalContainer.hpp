@@ -15,6 +15,8 @@ namespace ariel {
     private:
         vector<int> elements;
         vector<int> prime;
+        void sortElements(int elem, vector<int> &elmnts);
+        static bool isPrime(int number);
 
     public:
         MagicalContainer();
@@ -26,10 +28,6 @@ namespace ariel {
         size_t size();
 
         vector<int> getElements();
-
-        void sortElements(int elem, vector<int> &elmnts);
-
-        static bool isPrime(int number);
 
         class Iterator {
         public:
